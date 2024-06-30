@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const userRouter = require("./routes/users");
 const storeRouter = require("./routes/store");
 const bodyParser = require("body-parser");
+const helmet = require("helmet");
 const winston = require("winston");
 const logger = winston.createLogger({
   level: "info",
@@ -15,6 +16,9 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//secure header http
+app.use(helmet());
 
 // Register the user routes
 app.use("/", userRouter(logger));

@@ -3,16 +3,27 @@ const bcrypt = require("bcryptjs");
 // In-memory user storage
 let users = [];
 
-const roles = {
-  user: ["read"],
-  admin: ["read", "write"],
-};
-
 class User {
   constructor(email, password, role) {
     this.email = email;
     this.password = password;
     this.role = role;
+  }
+
+  static async findUserByEmail(email) {
+    const existingUser = users.find((user) => user.email === email);
+    return existingUser;
+  }
+
+  static async updatePassword(password, email) {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    users.forEach((user) => {
+      if (user.email == email) {
+        user.password = hashedPassword;
+      }
+    });
+
+    return { message: "Password has been reset successfully" };
   }
 
   async save() {
