@@ -6,7 +6,7 @@ async function sendResetEmail(email, resetLink) {
       from: '"Rishav" <baxel281@gmail.com>',
       to: email,
       subject: "Password Reset Request",
-      text: `Click the following link to reset your password: ${resetLink}`,
+      text: `Copy the following link  and paste it into the reset password in postman to reset your password: ${resetLink}`,
       // html: `<p>You have requested to reset your password. Please follow this <a href="${resetLink}">link</a> to reset your password.</p>`,
     });
 
