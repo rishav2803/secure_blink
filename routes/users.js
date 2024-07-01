@@ -109,7 +109,8 @@ module.exports = (logger) => {
         );
         resetTokens[token] = email;
 
-        const resetLink = `http://localhost:3000/reset-password/${token}`;
+        // const resetLink = `http://localhost:3000/reset-password/${token}`;
+        const resetLink = `https://secure-blink-yyrt.onrender.com/api/reset-password/${token}`;
         await sendResetEmail(email, resetLink);
 
         logger.info(`Password reset email sent to ${email}`);
