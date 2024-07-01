@@ -60,7 +60,7 @@ module.exports = (logger) => {
 
       try {
         // Perform user authentication
-        const user = await User.check(email, password);
+        const user = await User.check(email, password, role);
 
         // Generate JWT token
         const token = jwt.sign(
@@ -70,7 +70,7 @@ module.exports = (logger) => {
           },
           process.env.ACCESS_SECRET_TOKEN,
           {
-            expiresIn: "1m",
+            expiresIn: "1h",
           }
         );
 

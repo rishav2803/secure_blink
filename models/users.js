@@ -40,8 +40,10 @@ class User {
   }
 
   //User Level auth
-  static async check(email, password) {
-    const user = users.find((user) => user.email === email);
+  static async check(email, password, role) {
+    const user = users.find(
+      (user) => user.email === email && user.role === role
+    );
     if (!user) {
       throw new Error("User not found");
     }
