@@ -3,9 +3,9 @@ const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const User = require("../models/users");
 const jwt = require("jsonwebtoken");
+const sendResetEmail = require("../utils/sendResetEmail");
 
 const resetTokens = {};
-console.log(resetTokens);
 
 module.exports = (logger) => {
   router.post(
@@ -70,7 +70,7 @@ module.exports = (logger) => {
           },
           process.env.ACCESS_SECRET_TOKEN,
           {
-            expiresIn: "1h",
+            expiresIn: "1m",
           }
         );
 
@@ -105,17 +105,16 @@ module.exports = (logger) => {
             role: user.role,
           },
           process.env.RESET_SECRET_TOKEN,
-          { expiresIn: "1m" }
+          { expiresIn: "15m" }
         );
         resetTokens[token] = email;
 
         const resetLink = `http://localhost:3000/reset-password/${token}`;
-        // await sendResetEmail(email, resetLink);
+        await sendResetEmail(email, resetLink);
 
         logger.info(`Password reset email sent to ${email}`);
         return res.json({
           message: "Password reset email sent",
-          link: resetLink,
         });
       } catch (error) {
         logger.error("Error requesting password reset", error);

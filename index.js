@@ -4,13 +4,7 @@ const userRouter = require("./routes/users");
 const storeRouter = require("./routes/store");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
-const winston = require("winston");
-const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.json(),
-  transports: [new winston.transports.Console()],
-});
-
+const logger = require("./config/logger");
 dotenv.config();
 
 const app = express();
@@ -21,10 +15,10 @@ app.use(bodyParser.json());
 app.use(helmet());
 
 // Register the user routes
-app.use("/", userRouter(logger));
+app.use("/api", userRouter(logger));
 
 // Register the store routes
-app.use("/store", storeRouter(logger));
+app.use("/api/store", storeRouter(logger));
 
 const PORT = process.env.PORT || 3000;
 
