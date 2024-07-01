@@ -4,7 +4,7 @@ const request = require("supertest");
 const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
-const storeRoutes = require("../routes/store"); // Adjust the path to your store routes
+const storeRoutes = require("../routes/store"); 
 const logger = require("../config/logger");
 
 const app = express();
