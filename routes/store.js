@@ -76,7 +76,7 @@ module.exports = (logger) => {
       console.log(req.body);
       return res.status(200).json({
         message: "Recieved the data",
-        data:req.body
+        data:req.body.users.test1.ALL
       })
     }
   );
