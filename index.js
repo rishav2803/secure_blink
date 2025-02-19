@@ -20,6 +20,7 @@ app.use("/api", userRouter(logger));
 // Register the store routes
 app.use("/api/store", storeRouter(logger));
 
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
