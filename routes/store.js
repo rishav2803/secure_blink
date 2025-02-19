@@ -75,8 +75,7 @@ module.exports = (logger) => {
       console.log("Request body is");
       console.log(req);
       return res.status(200).json({
-        message: "Recieved the data",
-        data : req
+        message: "Recieved the data"
       })
     }
   );
