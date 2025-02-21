@@ -73,10 +73,10 @@ module.exports = (logger) => {
     "/test-data",
     async (req, res) => {
       console.log("Request body is");
-      console.log(req.body.users.test1.ALL);
+      console.log(req.body);
       return res.status(200).json({
         message: "Recieved the data",
-        data:req.body.users.test1.ALL
+        data:req.body
       })
     }
   );
